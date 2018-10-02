@@ -1,0 +1,313 @@
+POST http://localhost:5000/api/notify/slack/teamsCI HTTP/1.1
+content-type: application/json
+
+{
+  "attachments": [
+    {
+      "color": "опасность",
+      "fields": [
+        {
+          "title": "Автор запроса",
+          "value": "User name",
+          "short": true
+        },
+        {
+          "title": "Длительность",
+          "value": "00:04:37",
+          "short": true
+        },
+        {
+          "title": "Определение сборки",
+          "value": "CI",
+          "short": true
+        }
+      ],
+      "pretext": "Сбой сборки <https://my.vsts.com/web/build.aspx?pcguid=194c6ab4-5aee-4f6f-932a-6cc62ceafba5&builduri=vstfs%3a%2f%2f%2fBuild%2fBuild%2f69594|1.0.69594>",
+      "mrkdwn_in": [
+        "pretext"
+      ],
+      "fallback": "Сбой сборки 1.0.69594\r\n\r\n- System.Exception: VSTest Test Run failed with exit code: 1\r\n- Скрипт PowerShell выполнен с ошибками (1 шт.).\r\n"
+    }
+  ]
+}
+
+###
+
+POST http://localhost:5000/api/notify/slack/teamsPRCreated HTTP/1.1
+content-type: application/json
+
+{
+  "attachments": [
+    {
+      "fields": [
+        {
+          "title": "Источник",
+          "value": "`refs/heads/refactor/deleteCollectPhoto`",
+          "short": true
+        },
+        {
+          "title": "Целевая платформа",
+          "value": "`refs/heads/master`",
+          "short": true
+        },
+        {
+          "title": "Состояние",
+          "value": "`active`",
+          "short": true
+        },
+        {
+          "title": "Состояние слияния",
+          "value": "`conflicts`",
+          "short": true
+        },
+        {
+          "title": "Описание",
+          "value": "delete CollectPhoto",
+          "short": false
+        },
+        {
+          "title": "Рецензенты",
+          "value": "[Teams]\\Web \r\n",
+          "short": false
+        }
+      ],
+      "mrkdwn_in": [
+        "pretext",
+        "fields"
+      ],
+      "pretext": "User Name создали <https://my.vsts.com/DefaultCollection/_git/Teams/pullrequest/5587|запрос на вытягивание 5587> (Refactor: delete CollectPhoto) в <https://my.vsts.com/DefaultCollection/_git/Teams/|Teams>",
+      "fallback": "User Name создали запрос на вытягивание 5587 (Refactor: delete CollectPhoto) в Teams\r\nhttps://my.vsts.com/DefaultCollection/_git/Teams/\r\ndelete CollectPhoto\r\n"
+    }
+  ]
+}
+
+
+###
+
+POST http://localhost:5000/api/notify/slack/teamsPRApproved HTTP/1.1
+content-type: application/json
+
+{
+  "attachments": [
+    {
+      "pretext": "User Name ожидает действие автора в <https://my.vsts.com/DefaultCollection/_git/Teams/pullrequest/5823|запрос на вытягивание 5823> (Feature: Add Route) в <https://my.vsts.com/DefaultCollection/_git/Teams/|Teams>",
+      "mrkdwn_in": [
+        "pretext"
+      ],
+      "fallback": "User Name ожидает действие автора в запрос на вытягивание 5823 (Feature: Add Route) в Teams\r\nhttps://my.vsts.com/DefaultCollection/_git/Teams/"
+    }
+  ]
+}
+
+
+
+###
+
+POST http://localhost:5000/api/notify/webhook/teamsCI HTTP/1.1
+content-type: application/json
+
+{
+  "subscriptionId": "e38f5231-a2bf-4fd1-a93f-cc0c2e42e707",
+  "notificationId": 1,
+  "id": "79c8b9e3-7b3d-4c8e-b6e4-19a40f7cc808",
+  "eventType": "build.complete",
+  "publisherId": "tfs",
+  "message": {
+    "markdown": "Сбой сборки [1.0.71264](https://my.vsts.com/web/build.aspx?pcguid=194c6ab4-5aee-4f6f-932a-6cc62ceafba5&builduri=vstfs%3a%2f%2f%2fBuild%2fBuild%2f71264)"
+  },
+  "detailedMessage": {
+    "markdown": "Сбой сборки [1.0.71264](https://my.vsts.com/web/build.aspx?pcguid=194c6ab4-5aee-4f6f-932a-6cc62ceafba5&builduri=vstfs%3a%2f%2f%2fBuild%2fBuild%2f71264)\r\n\r\n+ Error: C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Enterprise\\Common7\\IDE\\CommonExtensions\\Microsoft\\TestWindow\\vstest.console.exe failed with return code: 1\r\n+ Работа Vstest завершилась с кодом возврата: 2.\r\n"
+  },
+  "resource": {
+    "uri": "vstfs:///Build/Build/71264",
+    "id": 71264,
+    "buildNumber": "1.0.71264",
+    "url": "https://my.vsts.com/DefaultCollection/9e0b1545-7a88-4cb9-80f4-7906d6e51273/_apis/build/Builds/71264",
+    "startTime": "2018-08-24T12:02:16.7048453Z",
+    "finishTime": "2018-08-24T12:11:35.8219706Z",
+    "reason": "batchedCI",
+    "status": "failed",
+    "drop": {},
+    "log": {},
+    "sourceGetVersion": "LG:refs/heads/fix/validator_renderer_when_no_stockItems:6632eea07bc8c6daa76a44499363ed22bd5875ac",
+    "lastChangedBy": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "displayName": "Microsoft.TeamFoundation.System",
+      "uniqueName": "000007F5-0000-8888-8000-000000000000@00000000-0000-0000-0000-000000000000"
+    },
+    "retainIndefinitely": false,
+    "definition": {
+      "definitionType": "xaml",
+      "id": 59,
+      "name": "CI",
+      "url": "https://my.vsts.com/DefaultCollection/9e0b1545-7a88-4cb9-80f4-7906d6e51273/_apis/build/Definitions/59"
+    },
+    "queue": {
+      "queueType": "buildController",
+      "id": 1,
+      "name": "Default",
+      "url": "https://my.vsts.com/DefaultCollection/_apis/build/Queues/1"
+    },
+    "requests": [
+      {
+        "id": 71264,
+        "url": "https://my.vsts.com/DefaultCollection/9e0b1545-7a88-4cb9-80f4-7906d6e51273/_apis/build/Requests/71264",
+        "requestedFor": {
+          "id": "ed94a929-3e5a-4219-baa0-95e46131e72c",
+          "displayName": "User Name",
+          "uniqueName": "domain\\username"
+        }
+      }
+    ]
+  },
+  "resourceVersion": "1.0",
+  "resourceContainers": {
+    "collection": {
+      "id": "194c6ab4-5aee-4f6f-932a-6cc62ceafba5",
+      "baseUrl": "https://my.vsts.com/DefaultCollection/"
+    },
+    "server": {
+      "id": "0851d37e-5f41-450f-8154-87ff57060cbd",
+      "baseUrl": "https://my.vsts.com/"
+    },
+    "project": {
+      "id": "9e0b1545-7a88-4cb9-80f4-7906d6e51273",
+      "baseUrl": "https://my.vsts.com/DefaultCollection/"
+    }
+  },
+  "createdDate": "2018-08-24T12:11:37.5876703Z"
+}
+
+
+###
+
+POST http://localhost:5000/api/notify/webhook/teamsPRCreated HTTP/1.1
+content-type: application/json
+
+{
+  "subscriptionId": "1bb1bd23-3f8a-4872-95ae-e2d5727e329d",
+  "notificationId": 1,
+  "id": "20e86f15-59e3-4cc3-a0cb-b778b4842da5",
+  "eventType": "git.pullrequest.created",
+  "publisherId": "tfs",
+  "message": {
+    "markdown": "User Name создали [запрос на вытягивание 5855](https://my.vsts.com/DefaultCollection/_git/Teams/pullrequest/5855) (получение совершенных визитов) в [Teams](https://my.vsts.com/DefaultCollection/_git/Teams/)"
+  },
+  "detailedMessage": {
+    "markdown": "User Name создали [запрос на вытягивание 5855](https://my.vsts.com/DefaultCollection/_git/Teams/pullrequest/5855) (получение совершенных визитов) в [Teams](https://my.vsts.com/DefaultCollection/_git/Teams/)\r\nполучение совершенных визитов\r\n"
+  },
+  "resource": {
+    "repository": {
+      "id": "e44e86d8-98ea-413e-917a-7c205e947451",
+      "name": "Teams",
+      "url": "https://my.vsts.com/DefaultCollection/_apis/git/repositories/e44e86d8-98ea-413e-917a-7c205e947451",
+      "project": {
+        "id": "9e0b1545-7a88-4cb9-80f4-7906d6e51273",
+        "name": "Teams",
+        "url": "https://my.vsts.com/DefaultCollection/_apis/projects/9e0b1545-7a88-4cb9-80f4-7906d6e51273",
+        "state": "wellFormed",
+        "revision": 31128959,
+        "visibility": "private"
+      },
+      "remoteUrl": "https://my.vsts.com/DefaultCollection/_git/Teams"
+    },
+    "pullRequestId": 5855,
+    "codeReviewId": 6856,
+    "status": "active",
+    "createdBy": {
+      "id": "84df51de-3012-45e6-ab1d-6328e4016dc9",
+      "displayName": "User Name",
+      "uniqueName": "domain\\username",
+      "url": "https://my.vsts.com/DefaultCollection/_apis/Identities/84df51de-3012-45e6-ab1d-6328e4016dc9",
+      "imageUrl": "https://my.vsts.com/DefaultCollection/_api/_common/identityImage?id=84df51de-3012-45e6-ab1d-6328e4016dc9"
+    },
+    "creationDate": "2018-08-24T12:44:53.7692547Z",
+    "title": "получение совершенных визитов",
+    "description": "получение совершенных визитов",
+    "sourceRefName": "refs/heads/fix/countVisitsByOutlet",
+    "targetRefName": "refs/heads/master",
+    "mergeStatus": "succeeded",
+    "mergeId": "694e8fc6-49b2-4d84-b311-23490e2c2f1a",
+    "lastMergeSourceCommit": {
+      "commitId": "f7a579fe6557d35c102bc1f0900b17b6e93612da",
+      "url": "https://my.vsts.com/DefaultCollection/_apis/git/repositories/e44e86d8-98ea-413e-917a-7c205e947451/commits/f7a579fe6557d35c102bc1f0900b17b6e93612da"
+    },
+    "lastMergeTargetCommit": {
+      "commitId": "fb2094c96087e6a131807990d217b4ecbf20cf2b",
+      "url": "https://my.vsts.com/DefaultCollection/_apis/git/repositories/e44e86d8-98ea-413e-917a-7c205e947451/commits/fb2094c96087e6a131807990d217b4ecbf20cf2b"
+    },
+    "lastMergeCommit": {
+      "commitId": "fa0d3c2100559bb9c538c7e48cc6d63feb8ed69e",
+      "author": {
+        "name": "User Name",
+        "email": "username@domain.ru",
+        "date": "2018-08-24T12:44:54Z"
+      },
+      "committer": {
+        "name": "User Name",
+        "email": "username@domain.ru",
+        "date": "2018-08-24T12:44:54Z"
+      },
+      "comment": "Запрос на вытягивание слияния 5855 из fix/countVisitsByOutlet в master",
+      "url": "https://my.vsts.com/DefaultCollection/_apis/git/repositories/e44e86d8-98ea-413e-917a-7c205e947451/commits/fa0d3c2100559bb9c538c7e48cc6d63feb8ed69e"
+    },
+    "reviewers": [
+      {
+        "reviewerUrl": "https://my.vsts.com/DefaultCollection/_apis/git/repositories/e44e86d8-98ea-413e-917a-7c205e947451/pullRequests/5855/reviewers/74346d3d-9df1-46af-ba2a-78d836c1cd06",
+        "vote": 0,
+        "id": "74346d3d-9df1-46af-ba2a-78d836c1cd06",
+        "displayName": "[Teams]\\Web",
+        "uniqueName": "vstfs:///Classification/TeamProject/9e0b1545-7a88-4cb9-80f4-7906d6e51273\\Web",
+        "url": "https://my.vsts.com/DefaultCollection/_apis/Identities/74346d3d-9df1-46af-ba2a-78d836c1cd06",
+        "imageUrl": "https://my.vsts.com/DefaultCollection/_api/_common/identityImage?id=74346d3d-9df1-46af-ba2a-78d836c1cd06",
+        "isContainer": true
+      }
+    ],
+    "url": "https://my.vsts.com/DefaultCollection/_apis/git/repositories/e44e86d8-98ea-413e-917a-7c205e947451/pullRequests/5855",
+    "_links": {
+      "web": {
+        "href": "https://my.vsts.com/DefaultCollection/_git/Teams/pullrequest/5855"
+      },
+      "statuses": {
+        "href": "https://my.vsts.com/DefaultCollection/_apis/git/repositories/e44e86d8-98ea-413e-917a-7c205e947451/pullRequests/5855/statuses"
+      }
+    },
+    "supportsIterations": true,
+    "artifactId": "vstfs:///Git/PullRequestId/9e0b1545-7a88-4cb9-80f4-7906d6e51273%2fe44e86d8-98ea-413e-917a-7c205e947451%2f5855"
+  },
+  "resourceVersion": "1.0-preview.1",
+  "resourceContainers": {
+    "collection": {
+      "id": "194c6ab4-5aee-4f6f-932a-6cc62ceafba5",
+      "baseUrl": "https://my.vsts.com/DefaultCollection/"
+    },
+    "server": {
+      "id": "0851d37e-5f41-450f-8154-87ff57060cbd",
+      "baseUrl": "https://my.vsts.com/"
+    },
+    "project": {
+      "id": "9e0b1545-7a88-4cb9-80f4-7906d6e51273",
+      "baseUrl": "https://my.vsts.com/DefaultCollection/"
+    }
+  },
+  "createdDate": "2018-08-24T12:44:55.3514111Z"
+}
+
+
+###
+
+POST http://localhost:5000/api/notify/slack/slackTeamsPRApproved HTTP/1.1
+content-type: application/json
+
+{
+  "attachments": [
+    {
+      "pretext": "User Name поставили оценку <https://my.vsts.com/DefaultCollection/_git/Teams/pullrequest/5711|запрос на вытягивание 5711> (Fix: Fix getting of materials) в <https://my.vsts.com/DefaultCollection/_git/Teams/|Teams>",
+      "mrkdwn_in": [
+        "pretext"
+      ],
+      "fallback": "User Name поставили оценку запрос на вытягивание 5711 (Fix: Fix getting of materials) в Teams\r\nhttps://my.vsts.com/DefaultCollection/_git/Teams/\r\nCherry picked from Pull request 5709.\r\n"
+    }
+  ]
+}
+

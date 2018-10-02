@@ -1,0 +1,4 @@
+﻿{
+  "text": "👁️‍🗨️ Pull-request [#{number}]({url}) created\n*{name}*\n",
+  "channel": "🌀 Project: *{project}*\n🛠️ Author: *{author}*\n↪️ Branch: {branch}\n🔀 Destination: {destination}"
+}
