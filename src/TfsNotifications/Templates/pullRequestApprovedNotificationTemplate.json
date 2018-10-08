@@ -1,0 +1,4 @@
+﻿{
+  "text": "{icon} *{author}* {action} [pull-request #{number}]({url}) \n*{name}*\n",
+  "channel": "🌀 Project: *{project}*\n"
+}

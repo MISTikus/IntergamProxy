@@ -1,0 +1,3 @@
+﻿{
+  "text": "❌ *Build failure* [{name} {number}]({url})\n☠️ Author: *{builderName}*\n⏲️ Duration: *{duration}*"
+}
